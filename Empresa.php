@@ -150,10 +150,13 @@ class Empresa{
 			$coleccionVentasRealizadas = $this->getColVentasRealizadas();
 			$coleccionVentasMotosImportadas = [];
 			foreach ($coleccionVentasRealizadas as $unaVentaRealizada) {
-				 $coleccionMotosImportadas = $unaVentaRealizada->retornarMotosImportadas();
-				if ($coleccionMotosImportadas != null) {
-					array_push($coleccionVentasMotosImportadas,$unaVentaRealizada);
+				$coleccionMotos = $unaVentaRealizada->getColeccionMotos();
+				foreach ($coleccionMotos as $unaMoto) {
+					if ($unaMoto instanceof MotoImportada) {
+						array_push($coleccionVentasMotosImportadas,$unaVentaRealizada);
+					}
 				}
+				
 				
 			}
 
